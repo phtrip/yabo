@@ -1919,6 +1919,7 @@ html, body {
   animation: cloudMove 20s 0s linear infinite;
 }
 
+.navbarActive,
 .page.active .showbox .icon-rocket {
   -moz-animation: rocket 1s 0.8s ease both;
   -webkit-animation: rocket 1s 0.8s ease both;
@@ -1928,7 +1929,6 @@ html, body {
   -webkit-transform-origin: right bottom;
   transform-origin: right bottom;
 }
-
 .page.active .showbox .icon-gift {
   -moz-animation: rollIn 1s 0.8s ease both;
   -webkit-animation: rollIn 1s 0.8s ease both;

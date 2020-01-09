@@ -107,7 +107,12 @@ $(document).ready(function($) {
         $("#navbar li").eq($(this).attr("data-id")).click();
     })
 
-    $("#navbar").addClass("")
+    if (!sessionStorage.getItem('navbar')) {
+        $("#navbar").addClass("navbarActive");
+        sessionStorage.setItem('navbar', 'navbarActive');
+    } else {
+        $("#navbar").removeClass("navbarActive");
+    }
 
 });
 
