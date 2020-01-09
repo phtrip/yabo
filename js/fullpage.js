@@ -125,6 +125,8 @@ $(function(){
     var nav = $('#navbar'); 
     var topNav = $('.topbar'); 
     var page = $('#pages');
+    var currentVideoId = 0;
+
     nav.find('li').eq(0).addClass('active').siblings('li').removeClass('active');
     page.find('.page').eq(0).addClass('active').siblings('li').removeClass('active');
     page.find('.page').removeClass('page-leave');
@@ -133,11 +135,19 @@ $(function(){
         mainCell: '.page',
         speed: 600,
         startFn: function(index){
+            currentVideoId = $(".sp-selected-thumbnail .sp-thumbnail").attr("data-index");
+            videos[currentVideoId].muted = true;
+            $(".voice-on").hide();
+            $(".voice-off").show();
             for (var j = videos.length - 1; j >= 0; j--) {
-                if (j!=index) videos[j].pause();
+                if (j!=index) {
+                    videos[j].pause();
+                } else {
+                    videos[currentVideoId].play();
+                }
             }
             nav.find('li').eq(index).addClass('active').siblings('li').removeClass('active');
-            index>5 ? nav.fadeOut() : nav.fadeIn();
+            index>4 ? nav.fadeOut() : nav.fadeIn();
             page.find('.page').removeClass('page-leave');
             page.find('.page').eq(index-1).addClass('page-leave');
         }

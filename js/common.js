@@ -158,6 +158,20 @@ video_0.addEventListener('play',function(){
 video_0.addEventListener('pause',function(){
     console.log("播放暂停");
 });
+//客户端正在请求数据
+video_0.addEventListener('loadedmetadata',function(){
+    // $(".loading, .overlay").show();
+});
+
+//客户端正在请求数据
+video_0.addEventListener('canplay',function(){
+    // $(".loading, .overlay").show();
+});
+
+//当指定的音频/视频的元数据已加载时
+video_0.addEventListener('progress',function(){
+    // $(".loading, .overlay").show();
+});
 
 //监听播放结束
 video_0.addEventListener('ended',function(){
