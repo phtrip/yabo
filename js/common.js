@@ -22,17 +22,6 @@ $(document).ready(function($) {
         thumbnailHeight: 110
     }); 
 
-    $('#my-slider').sliderPro({
-		width: 960,
-		height: 500,
-		arrows: true,
-		buttons: false,
-		waitForLayers: true,
-		fade: true,
-		autoplay: false,
-		autoScaleLayers: false
-	});
-
      // 打开声音
     $(".voice-off").on("click", function() {
         disableMute()
@@ -173,10 +162,23 @@ video_0.addEventListener('progress',function(){
     // $(".loading, .overlay").show();
 });
 
-//监听播放结束
-video_0.addEventListener('ended',function(){
-    console.log("播放结束");
-});
+for (var i = 0; i <  videos.length; i++) {
+     //监听播放结束
+    videos[i].addEventListener('ended',function(){
+        // console.log("播放结束");
+        var nowVideoId = Number($(".sp-selected-thumbnail .sp-thumbnail").attr("data-index"));
+        var nextId = 0;
+        $('#videoBox').sliderPro('nextSlide');
+        nextId = Number(nowVideoId + 1);
+        if (nowVideoId >= 3) {
+            nowVideoId = 0;
+            nextId = 0;
+        }
+        // console.log(nextId)
+        videos[nextId].play();
+    });
+}
+
      
 //使用事件监听方式捕捉事件， 此事件可作为实时监测video 播放状态
 video_0.addEventListener("timeupdate",function(){

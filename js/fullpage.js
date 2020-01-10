@@ -56,9 +56,10 @@
             //处理滚轮事件
             mS: function(){
                 var t = this;
-                $(document).bind("mousewheel DOMMouseScroll", function(e) {
+                $(document).on("mousewheel DOMMouseScroll", function(e) {
                     e.preventDefault(); // 阻止默认滚轮事件(如果存在这样的事件)
                     var v = e.originalEvent.wheelDelta || -e.originalEvent.detail;  //得到的值为120(向上)和-120(向下)
+                    console.log(v)
                     var i = v > 0 ? t.index-1 : t.index+1;
                     t.hS(i); //实现滚动效果
                 });

@@ -1707,7 +1707,7 @@ html, body {
 }
 .leftImg,
 .rightImg {
-    width: 45%;  
+    width: 42%;  
 }
 .rightImg img,
 .leftImg img {
@@ -1720,7 +1720,8 @@ html, body {
   margin: 0 auto;
 }
 .secondLast {
-  position: relative;
+  width: 50%;
+    top: -5%;
 }
 .secondLast .poker {
   position: absolute;
@@ -1732,8 +1733,17 @@ html, body {
 }
 .secondLast .poker-right {
   right: 0;
-    top: 10px;
+    top: 7%;
 }
+.second-03 {
+  top: -7%;
+  position: relative;
+}
+.second-02 {
+  top: -10%;
+}
+
+
 .pages .textbox .ani li {
   position: absolute;
   left: 50%;
@@ -2166,6 +2176,15 @@ html, body {
     background: rgba(0, 0, 0, .5);
     border-radius: 15px;
 }
+.page1 .sp-thumbnails-container:after { 
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    content: '';
+    width: 100%;
+    height: 100%;
+    display: block;
+}
 .sp-thumbnail-image-container p {
     position: absolute;
     bottom: 10px;
@@ -2264,11 +2283,15 @@ html, body {
     cursor: pointer;
 }
 .sp-selected-thumbnail .ico-play-preview,
-.sp-selected-thumbnail p,
-.sp-selected-thumbnail .sp-thumbnail-image-container:after,
 .page1 .sp-thumbnails-container .swiper-slide-active:after,
 .page1 .sp-thumbnails-container .swiper-slide-active i {
     display: none!important;
+}
+.sp-selected-thumbnail .sp-thumbnail-image-container:after {
+    height: 40px;
+    bottom: 0;
+    top: auto;
+    border-radius: 0;
 }
 .page1 .sp-thumbnails-container .swiper-slide img  {
     width: 100%;
@@ -2370,14 +2393,14 @@ html, body {
     width: 10%;
 }
 .rightFloat {
-    top: 32%;
+    top: 17%;
     right: -19%;
     width: 9%;
 }
 
 .page4 .rightFloat,
 .page4 .leftFloat {
-    width: 17%!important;
+    width: 21%!important;
 }
 .footer {
     height: 260px;
@@ -2408,8 +2431,8 @@ html, body {
     position: relative;
     width: 980px;
     display: flex;
-    margin: 50px auto 0;
-    justify-content: center;
+    margin: 30px auto 0;
+    justify-content: space-between;
 }
 
 .footer .footer_logo li {
@@ -2423,9 +2446,10 @@ html, body {
     margin: 0;
 }
 .footer .footer_logo li p:first-child {
-    min-height: 60px;
+    height: 50px;
 }
 .footer .footer_logo li img {
+  height: 100%;
 }
 .footer .footer_logo li:hover p {
     color: #fff;
@@ -2489,6 +2513,18 @@ html, body {
     bottom: 0;
     width: 100%;
     z-index: 10;
+    -moz-user-select:none; /*火狐*/
+    -webkit-user-select:none; /*webkit浏览器*/
+    -ms-user-select:none; /*IE10*/
+    -khtml-user-select:none; /*早期浏览器*/
+    user-select:none;
+}
+.contract-bar .line {
+    border-right: 1px solid #ccc;
+    margin: 0 15px;
+}
+.contract-bar label {
+  font-size: 22px;
 }
 .contract-bar .main {
     width: 1200px;
@@ -2513,6 +2549,11 @@ html, body {
     width: 30px;
     height: 30px;
     margin-right: 5px;
+}
+.page2 .contract-bar .item:nth-child(2),
+.page3 .contract-bar .item:nth-child(2),
+.page4 .contract-bar .item:nth-child(2) {
+  margin-right: 0;
 }
 .icon-tg {
     background: url('../images/tg.svg') no-repeat;
@@ -2722,6 +2763,16 @@ html, body {
     }
     .leftImg, .rightImg {
         width: 37%;
+    }
+    .second-03 {
+      top: 0;
+    }
+    .second-02 {
+        top: -7%;
+    }
+    .secondLast {
+        width: 45%;
+        top: 0;
     }
     .joinus .swiper-container img {
         width: 100%;
