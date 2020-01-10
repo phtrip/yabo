@@ -57,7 +57,6 @@
             mS: function(){
                 var t = this;
                 $(document).on("mousewheel DOMMouseScroll", function(e) {
-                    console.log('========')
                     e.preventDefault(); // 阻止默认滚轮事件(如果存在这样的事件)
                     var v = e.originalEvent.wheelDelta || -e.originalEvent.detail;  //得到的值为120(向上)和-120(向下)
                     var i = v > 0 ? t.index-1 : t.index+1;
