@@ -8,7 +8,7 @@
     <meta name="keywords" content="亚博集团官网">
     <meta name="description" content="亚博集团官网">
     <link rel="stylesheet" href="./css/animate.css">
-    <link rel="stylesheet" href="./css/style.css?v=1.0.0">
+    <link rel="stylesheet" href="./css/style.css?v=1.0.2">
     <link rel="stylesheet" href="./css/certify.css">
     <link rel="stylesheet" type="text/css" href="./css/slider-pro.min.css" media="screen" />
     <link rel="stylesheet" type="text/css" href="./css/swiper.min.css">
@@ -49,17 +49,17 @@
                     </div>
                     <div class="sp-slides view">
                         <div class="sp-slide">
-                            <video poster="./images/1-banner-03.jpg" src="./videos/Manchester.mp4" preload="preload" muted id="video_0">
+                            <video src="./videos/Manchester.mp4" preload="preload" loop="loop" muted id="video_0">
                             </video>
                         </div>
                         <div class="sp-slide">
-                            <video poster="./images/1-banner-01.jpg" src="./videos/Bayern.m4v" preload="none" muted id="video_1">
+                            <video src="./videos/Bayern.mp4" preload="none" muted loop="loop" id="video_1">
                         </div>
                         <div class="sp-slide">
-                            <video poster="./images/1-banner-04.jpg" src="./videos/SerieA.mp4" preload="none" muted id="video_2">
+                            <video src="./videos/SerieA.mp4" preload="none" muted loop="loop" id="video_2">
                         </div>
                         <div class="sp-slide">
-                            <video poster="./images/1-banner-02.jpg" src="./videos/Gerald.m4v" preload="none" muted id="video_3">
+                            <video src="./videos/Gerald.mp4" preload="none" muted loop="loop" id="video_3">
                         </div>
                     </div>
                     <div class="sp-thumbnails preview">
@@ -145,7 +145,7 @@
                         <div class="swiper-slide">
                             <div class="textbox w55">
                                 <ul class="ani">
-                                    <li class="ani-logo"><img src="./images/img_1.png" style="width: 560px;"></li>
+                                    <li class="ani-logo"><img src="./images/img_1.png" ></li>
                                     <li class="ani-1"><img src="./images/football@2x.png"></li>
                                     <li class="ani-2"><img src="./images/volleyball@2x.png"></li>
                                     <li class="ani-3"><img src="./images/basketball@2x.png"></li>
@@ -592,7 +592,7 @@
     <script src="./js/jquery.slider-pro.min.js"></script>
     <script src="./js/fullpage.js"></script>
     <script type="text/javascript" src="./js/swiper.min.js"></script>
-    <script src="./js/common.js"></script>
+    <script src="./js/common.js?v=1.0.2"></script>
     <script type="text/javascript">
         var mySwiper = new Swiper('.page2 .swiper-container', {//初始化Swiper
             navigation: {//前进后退
@@ -600,10 +600,10 @@
                prevEl: '.swiper-button-prev',
              },
              autoplay: false,
-            /*autoplay: {
+            autoplay: {
                 delay: 3000,
                 disableOnInteraction: false,
-            },*/
+            },
             loop : true,//循环
         })
 

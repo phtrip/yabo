@@ -35,11 +35,14 @@ $(document).ready(function($) {
     // 切换轮播
     $('.sp-thumbnails-container .sp-thumbnail').on("click",function(){
         currentId = Number($(this).attr('data-index'))
+        $(".voice-off").hide();
+        $(".voice-on").show();
 
         // 暂停除了当前播放
         for (var i = videos.length - 1; i >= 0; i--) {
             (function(){
                 videos[i].muted=true;
+                videos[currentId].muted=false;
                 var p = i;
                 videos[p].addEventListener('play',function(){
                     pauseAll(p);
@@ -61,8 +64,6 @@ $(document).ready(function($) {
         } else if (currentId === 3) {
             video_3.play();
         }
-        $(".voice-on").hide();
-        $(".voice-off").show();
     })  
 
     //首先将.toTop隐藏
@@ -75,21 +76,10 @@ $(document).ready(function($) {
           $(".toTop").fadeOut(200);
         }
       });
-    $('body,html').animate({
-            scrollTop: 0
-        },
-    500);
   //当点击跳转链接后，回到页面顶部位置
-    $(".toTop, .logo").on("click", function() {
-        $('body,html').animate({
-            scrollTop: 0
-        },
-        500);
-        return false;
-    });
-    $(".logo").on("click", function() {
-        location.reload();      
-    });
+    // $(".toTop, .logo").on("click", function() {
+    //     window.location.href="/indx.html?page=1"
+    // }); 
 
     // 下一页按钮
     $(".nextPage").on("click", function() {
@@ -102,7 +92,6 @@ $(document).ready(function($) {
     } else {
         $("#navbar").removeClass("navbarActive");
     }
-
 });
 
 //关闭声音
@@ -166,16 +155,16 @@ for (var i = 0; i <  videos.length; i++) {
      //监听播放结束
     videos[i].addEventListener('ended',function(){
         // console.log("播放结束");
-        var nowVideoId = Number($(".sp-selected-thumbnail .sp-thumbnail").attr("data-index"));
+       /* var nowVideoId = Number($(".sp-selected-thumbnail .sp-thumbnail").attr("data-index"));
         var nextId = 0;
+        var totalVid = 3; // 总共几个视频
         $('#videoBox').sliderPro('nextSlide');
         nextId = Number(nowVideoId + 1);
-        if (nowVideoId >= 3) {
+        if (nowVideoId >= totalVid) {
             nowVideoId = 0;
             nextId = 0;
         }
-        // console.log(nextId)
-        videos[nextId].play();
+        videos[nextId].play();*/
     });
 }
 
@@ -192,19 +181,3 @@ video_0.addEventListener("timeupdate",function(){
             //处理代码
     }
 },false);  
-
-// 暂停
-var videos = document.getElementsByTagName('video');
-for (var i = videos.length - 1; i >= 0; i--) {
-    (function(){
-        var p = i;
-        videos[p].addEventListener('play',function(){
-            pauseAll(p);
-        })
-    })()
-}
-function pauseAll(index){
-    for (var j = videos.length - 1; j >= 0; j--) {
-        if (j!=index) videos[j].pause();
-    }
-};

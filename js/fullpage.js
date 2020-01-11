@@ -119,37 +119,65 @@
     }
 })(jQuery)
 	
-	
+function GetQueryValue(queryName) {
+    var query = decodeURI(window.location.search.substring(1));
+    var vars = query.split("&");
+    for (var i = 0; i < vars.length; i++) {
+        var pair = vars[i].split("=");
+        if (pair[0] == queryName) { return pair[1]; }
+    }
+    return null;
+}	
 
 $(function(){
     var nav = $('#navbar'); 
     var topNav = $('.topbar'); 
     var page = $('#pages');
     var currentVideoId = 0;
+    var pageNum = 1;
+    var currentPage = 0;
 
-    nav.find('li').eq(0).addClass('active').siblings('li').removeClass('active');
-    page.find('.page').eq(0).addClass('active').siblings('li').removeClass('active');
-    page.find('.page').removeClass('page-leave');
     page.fullpage({
         menuCell: '#navbar li, .topbar li',
         mainCell: '.page',
         speed: 600,
         startFn: function(index){
             currentVideoId = $(".sp-selected-thumbnail .sp-thumbnail").attr("data-index");
-            videos[currentVideoId].muted = true;
-            $(".voice-on").hide();
-            $(".voice-off").show();
-            for (var j = videos.length - 1; j >= 0; j--) {
-                if (j!=index) {
-                    videos[j].pause();
+            if (currentVideoId) {
+                if (index === 0) {
+                    videos[currentVideoId].muted = false;
+                    $(".voice-off").hide();
+                    $(".voice-on").show();
                 } else {
-                    videos[currentVideoId].play();
+                    videos[currentVideoId].muted = true;
+                    $(".voice-off").show();
+                    $(".voice-on").hide();
+                }
+                // $(".voice-on").hide();
+                // $(".voice-off").show();
+                for (var j = videos.length - 1; j >= 0; j--) {
+                    if (j!=index) {
+                        videos[j].pause();
+                    } else {
+                        videos[currentVideoId].play();
+                    }
                 }
             }
+            pageNum = index + 1
+            history.pushState({page: pageNum}, 'title 1', '?page='+pageNum);
+
             nav.find('li').eq(index).addClass('active').siblings('li').removeClass('active');
             index>4 ? nav.fadeOut() : nav.fadeIn();
             page.find('.page').removeClass('page-leave');
             page.find('.page').eq(index-1).addClass('page-leave');
         }
     })
+
+    if(!GetQueryValue('page')) {
+        history.pushState({page: pageNum}, 'title 1', '?page='+pageNum);
+    } else {
+        currentPage = GetQueryValue('page');
+        nav.find('li').eq(currentPage-1).trigger("click");
+    }
+
 })
