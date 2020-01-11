@@ -3,6 +3,7 @@
  * by ray   
  * 2016-9-11
  */
+var flag = true;
 (function($){
     $.fn.fullpage = function(options){
         $.fn.fullpage.defaults = {
@@ -23,7 +24,7 @@
         var pageHeight = $(window).height();//页面的高度
 
         var mouseS = {
-            index: opts.defaultIndex,		//页面索引
+            index: opts.defaultIndex,       //页面索引
             isScroll: false,                //窗口滚动状态
 
             //初始化
@@ -57,10 +58,16 @@
             mS: function(){
                 var t = this;
                 $(document).on("mousewheel DOMMouseScroll", function(e) {
-                    e.preventDefault(); // 阻止默认滚轮事件(如果存在这样的事件)
-                    var v = e.originalEvent.wheelDelta || -e.originalEvent.detail;  //得到的值为120(向上)和-120(向下)
-                    var i = v > 0 ? t.index-1 : t.index+1;
-                    t.hS(i); //实现滚动效果
+                    if(flag) {
+                        flag = false
+                        e.preventDefault(); // 阻止默认滚轮事件(如果存在这样的事件)
+                        var v = e.originalEvent.wheelDelta || -e.originalEvent.detail;  //得到的值为120(向上)和-120(向下)
+                        var i = v > 0 ? t.index-1 : t.index+1;
+                        t.hS(i); //实现滚动效果
+                       setTimeout(function(){
+                            flag = true
+                       }, 1500)
+                    }
                 });
             },
             //实现窗口滚动效果
@@ -118,7 +125,7 @@
         mouseS.init();
     }
 })(jQuery)
-	
+    
 function GetQueryValue(queryName) {
     var query = decodeURI(window.location.search.substring(1));
     var vars = query.split("&");
@@ -127,7 +134,7 @@ function GetQueryValue(queryName) {
         if (pair[0] == queryName) { return pair[1]; }
     }
     return null;
-}	
+}   
 
 $(function(){
     var nav = $('#navbar'); 
@@ -142,36 +149,35 @@ $(function(){
         mainCell: '.page',
         speed: 600,
         startFn: function(index){
-            setTimeout(function(){
-                currentVideoId = $(".sp-selected-thumbnail .sp-thumbnail").attr("data-index");
-                if (currentVideoId) {
-                    if (index === 0) {
-                        videos[currentVideoId].muted = false;
-                        $(".voice-off").hide();
-                        $(".voice-on").show();
+            currentVideoId = $(".sp-selected-thumbnail .sp-thumbnail").attr("data-index");
+            if (currentVideoId) {
+                if (index === 0) {
+                    videos[currentVideoId].muted = false;
+                    $(".voice-off").hide();
+                    $(".voice-on").show();
+                } else {
+                    videos[currentVideoId].muted = true;
+                    $(".voice-off").show();
+                    $(".voice-on").hide();
+                }
+                // $(".voice-on").hide();
+                // $(".voice-off").show();
+                for (var j = videos.length - 1; j >= 0; j--) {
+                    if (j!=index) {
+                        videos[j].pause();
                     } else {
-                        videos[currentVideoId].muted = true;
-                        $(".voice-off").show();
-                        $(".voice-on").hide();
-                    }
-                    // $(".voice-on").hide();
-                    // $(".voice-off").show();
-                    for (var j = videos.length - 1; j >= 0; j--) {
-                        if (j!=index) {
-                            videos[j].pause();
-                        } else {
-                            videos[currentVideoId].play();
-                        }
+                        videos[currentVideoId].play();
                     }
                 }
-                pageNum = index + 1
-                history.pushState({page: pageNum}, 'title 1', '?page='+pageNum);
+            }
+            pageNum = index + 1
+            history.pushState({page: pageNum}, 'title 1', '?page='+pageNum);
 
-                nav.find('li').eq(index).addClass('active').siblings('li').removeClass('active');
-                index>4 ? nav.fadeOut() : nav.fadeIn();
-                page.find('.page').removeClass('page-leave');
-                page.find('.page').eq(index-1).addClass('page-leave');
-            }, 800)
+            nav.find('li').eq(index).addClass('active').siblings('li').removeClass('active');
+            index>4 ? nav.fadeOut() : nav.fadeIn();
+            page.find('.page').removeClass('page-leave');
+            page.find('.page').eq(index-1).addClass('page-leave');
+            
         }
     })
 
