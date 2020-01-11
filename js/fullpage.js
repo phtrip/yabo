@@ -142,34 +142,36 @@ $(function(){
         mainCell: '.page',
         speed: 600,
         startFn: function(index){
-            currentVideoId = $(".sp-selected-thumbnail .sp-thumbnail").attr("data-index");
-            if (currentVideoId) {
-                if (index === 0) {
-                    videos[currentVideoId].muted = false;
-                    $(".voice-off").hide();
-                    $(".voice-on").show();
-                } else {
-                    videos[currentVideoId].muted = true;
-                    $(".voice-off").show();
-                    $(".voice-on").hide();
-                }
-                // $(".voice-on").hide();
-                // $(".voice-off").show();
-                for (var j = videos.length - 1; j >= 0; j--) {
-                    if (j!=index) {
-                        videos[j].pause();
+            setTimeout(function(){
+                currentVideoId = $(".sp-selected-thumbnail .sp-thumbnail").attr("data-index");
+                if (currentVideoId) {
+                    if (index === 0) {
+                        videos[currentVideoId].muted = false;
+                        $(".voice-off").hide();
+                        $(".voice-on").show();
                     } else {
-                        videos[currentVideoId].play();
+                        videos[currentVideoId].muted = true;
+                        $(".voice-off").show();
+                        $(".voice-on").hide();
+                    }
+                    // $(".voice-on").hide();
+                    // $(".voice-off").show();
+                    for (var j = videos.length - 1; j >= 0; j--) {
+                        if (j!=index) {
+                            videos[j].pause();
+                        } else {
+                            videos[currentVideoId].play();
+                        }
                     }
                 }
-            }
-            pageNum = index + 1
-            history.pushState({page: pageNum}, 'title 1', '?page='+pageNum);
+                pageNum = index + 1
+                history.pushState({page: pageNum}, 'title 1', '?page='+pageNum);
 
-            nav.find('li').eq(index).addClass('active').siblings('li').removeClass('active');
-            index>4 ? nav.fadeOut() : nav.fadeIn();
-            page.find('.page').removeClass('page-leave');
-            page.find('.page').eq(index-1).addClass('page-leave');
+                nav.find('li').eq(index).addClass('active').siblings('li').removeClass('active');
+                index>4 ? nav.fadeOut() : nav.fadeIn();
+                page.find('.page').removeClass('page-leave');
+                page.find('.page').eq(index-1).addClass('page-leave');
+            }, 800)
         }
     })
 
