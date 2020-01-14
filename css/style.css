@@ -1575,6 +1575,7 @@ html, body {
     right: -30%;
 }
 .pages .page1 {
+    background-color: #000;
 }
 
 .pages .page1 .page-inner {
@@ -2709,7 +2710,7 @@ html, body {
 
 
 
-@media screen and (max-width: 1500px) {
+@media screen and (max-width: 1680px) {
     .ani-logo img {
         width: 460px!important;
     }
@@ -2730,7 +2731,7 @@ html, body {
         margin-top: 120px;
     }
     .partner {
-        margin: 10px 0 5px 0!important; 
+        margin: 0 0 5px 0!important; 
     }
     .teamwork li {
         width: 32%;
@@ -2766,11 +2767,11 @@ html, body {
     }
     .titlebox {
         text-align: center;
-        transform: scale(0.8);
-        -ms-transform: scale(0.8);     /* IE 9 */
-        -moz-transform: scale(0.8);    /* Firefox */
-        -webkit-transform: scale(0.8); /* Safari 和 Chrome */
-        -o-transform: scale(0.8);  /* Opera */
+        transform: scale(0.7);
+        -ms-transform: scale(0.7);     /* IE 9 */
+        -moz-transform: scale(0.7);    /* Firefox */
+        -webkit-transform: scale(0.7); /* Safari 和 Chrome */
+        -o-transform: scale(0.7);  /* Opera */
     }
     .title_top {
         margin: 2px 0 0 0;
@@ -2801,6 +2802,16 @@ html, body {
   .rightBox li {
       margin-bottom: 17px;
   }
+  .nextPage {
+    bottom: 50px;
+  }
+  .page1 .nextPage {
+      bottom: 10px!important;
+  }
+  #videoBox video {
+      margin-top: 0;
+  }
+
 }
 
 
